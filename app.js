@@ -62,17 +62,17 @@ function infoBasicaUsuario() {
                 </tbody>
             </table>
             `
-            
+
             // Comprobación usuario existe
             let arrUsuarios = []
             dataUsuarios.forEach(usuario => {
                 arrUsuarios.push(usuario.name)
             })
             while (!arrUsuarios.includes(nombreConsulta)) {
-                alert("Usuario incorrecto. Ingrese nuevamente.")
-                contenedorData.setAttribute("class", "container p-3 m-auto text-center")
+                alert("Usuario incorrecto. Intente nuevamente.")
+                contenedorData.setAttribute("class", "col-5 container p-3 m-auto text-center")
                 contenedorData.innerHTML =`
-                <h5 class="text-center">Consulta no realizada. Intente nuevamente.</h5>
+                <h5 class="text-center">Consulta no realizada. Puede encontrar los nombres de los usuarios en nuestro directorio de usuarios.</h5>
                 `
                 break
             }
@@ -124,10 +124,10 @@ function pintarDireccion() {
                 arrUsuarios.push(usuario.name)
             })
             while (!arrUsuarios.includes(nombreConsulta)) {
-                alert("Usuario incorrecto. Ingrese nuevamente.")
-                contenedorData.setAttribute("class", "container p-3 m-auto text-center")
+                alert("Usuario incorrecto. Intente nuevamente.")
+                contenedorData.setAttribute("class", "col-5 container p-3 m-auto text-center")
                 contenedorData.innerHTML =`
-                <h5 class="text-center">Consulta no realizada. Intente nuevamente.</h5>
+                <h5 class="text-center">Consulta no realizada. Puede encontrar los nombres de los usuarios en nuestro directorio de usuarios.</h5>
                 `
                 break
             }
@@ -188,10 +188,10 @@ function infoAvanzada() {
                 arrUsuarios.push(usuario.name)
             })
             while (!arrUsuarios.includes(nombreConsulta)) {
-                alert("Usuario incorrecto. Ingrese nuevamente.")
-                contenedorData.setAttribute("class", "container p-3 m-auto text-center")
+                alert("Usuario incorrecto. Intente nuevamente.")
+                contenedorData.setAttribute("class", "col-5 container p-3 m-auto text-center")
                 contenedorData.innerHTML =`
-                <h5 class="text-center">Consulta no realizada. Intente nuevamente.</h5>
+                <h5 class="text-center">Consulta no realizada. Puede encontrar los nombres de los usuarios en nuestro directorio de usuarios.</h5>
                 `
                 break
             }
