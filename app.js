@@ -7,7 +7,7 @@ const listarNombresUsuarios = document.getElementById("listarNombresUsuarios")
 const infoBasica = document.getElementById("infoBasica")
 const buscarDireccionUsuario = document.getElementById("buscarDireccionUsuario")
 const infoAvanzadaUsuario = document.getElementById("infoAvanzadaUsuario")
-const listarCompanias = document.getElementById("listarCompanias")
+const listarEmpresas = document.getElementById("listarEmpresas")
 const listarUsuariosAZ = document.getElementById("listarUsuariosAZ")
 
 // Funciones para obtener data
@@ -62,6 +62,22 @@ function infoBasicaUsuario() {
                 </tbody>
             </table>
             `
+            
+            // Comprobación usuario existe
+            let arrUsuarios = []
+            dataUsuarios.forEach(usuario => {
+                arrUsuarios.push(usuario.name)
+            })
+            while (!arrUsuarios.includes(nombreConsulta)) {
+                alert("Usuario incorrecto. Ingrese nuevamente.")
+                contenedorData.setAttribute("class", "container p-3 m-auto text-center")
+                contenedorData.innerHTML =`
+                <h5 class="text-center">Consulta no realizada. Intente nuevamente.</h5>
+                `
+                break
+            }
+
+            // Consulta a la data
             const cuerpoTabla = document.getElementById("cuerpoTabla")
             dataUsuarios.forEach(usuario => {
                 if(usuario.name == nombreConsulta) {
@@ -102,6 +118,21 @@ function pintarDireccion() {
                 </tbody>
             </table>
             `
+            // Comprobación usuario existe
+            let arrUsuarios = []
+            dataUsuarios.forEach(usuario => {
+                arrUsuarios.push(usuario.name)
+            })
+            while (!arrUsuarios.includes(nombreConsulta)) {
+                alert("Usuario incorrecto. Ingrese nuevamente.")
+                contenedorData.setAttribute("class", "container p-3 m-auto text-center")
+                contenedorData.innerHTML =`
+                <h5 class="text-center">Consulta no realizada. Intente nuevamente.</h5>
+                `
+                break
+            }
+
+            // Consulta a la data
             const cuerpoTabla = document.getElementById("cuerpoTabla")
             dataUsuarios.forEach(usuario => {
                 if(usuario.name == nombreConsulta) {
@@ -131,13 +162,19 @@ function infoAvanzada() {
         if (this.readyState == 4 && this.status == 200) {
             const dataUsuarios = JSON.parse(this.responseText)
             contenedorData.innerHTML = `
-                <table class="table text-center">
+                <table class="table text-center align-middle">
                     <thead>
                         <tr>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Teléfono</th>
-                            <th scope="col">Sitio Web</th>
-                            <th scope="col">Compañía</th>
+                            <th scope="col" rowspan="2">Nombre Usuario</th>
+                            <th scope="col" rowspan="2">Teléfono</th>
+                            <th scope="col" rowspan="2">Sitio Web</th>
+                            <th scope="col" colspan="3" rowspan="1">Empresa
+                                <tr scope="row">
+                                    <th>Nombre</th>
+                                    <th>Actividad</th>
+                                    <th>Eslogan</th>
+                                </tr>
+                            </th>
                         </tr>
                     </thead>
                     <tbody id="cuerpoTabla">
@@ -145,6 +182,21 @@ function infoAvanzada() {
                 </table>
                 `
             const cuerpoTabla = document.getElementById("cuerpoTabla")
+            // Comprobación usuario existe
+            let arrUsuarios = []
+            dataUsuarios.forEach(usuario => {
+                arrUsuarios.push(usuario.name)
+            })
+            while (!arrUsuarios.includes(nombreConsulta)) {
+                alert("Usuario incorrecto. Ingrese nuevamente.")
+                contenedorData.setAttribute("class", "container p-3 m-auto text-center")
+                contenedorData.innerHTML =`
+                <h5 class="text-center">Consulta no realizada. Intente nuevamente.</h5>
+                `
+                break
+            }
+
+            // Consulta a la data
             dataUsuarios.forEach(usuario => {
                 if(usuario.name == nombreConsulta) {
                     const fila = document.createElement("tr")
@@ -153,15 +205,18 @@ function infoAvanzada() {
                         <td>${usuario.phone}</td>
                         <td>${usuario.website}</td>
                         <td>${usuario.company.name}</td>
+                        <td>${usuario.company.bs}</td>
+                        <td>${usuario.company.catchPhrase}</td>
+
                     `
                     cuerpoTabla.appendChild(fila)
-                }            
+                }         
             })
         }
     }
 }
 
-function pintarCompanias() {
+function pintarEmpresas() {
     xhr.open("GET", "https://jsonplaceholder.typicode.com/users", true);
     xhr.send();
     xhr.onreadystatechange = function() {
@@ -171,7 +226,7 @@ function pintarCompanias() {
                 <table class="table text-center">
                     <thead>
                         <tr>
-                            <th scope="col">Compañía</th>
+                            <th scope="col">Empresa</th>
                             <th scope="col">Eslogan</th>
                         </tr>
                     </thead>
@@ -232,5 +287,5 @@ listarNombresUsuarios.addEventListener('click', pintarNombresUsuarios);
 infoBasica.addEventListener('click', infoBasicaUsuario)
 buscarDireccionUsuario.addEventListener('click', pintarDireccion)
 infoAvanzadaUsuario.addEventListener('click', infoAvanzada)
-listarCompanias.addEventListener('click', pintarCompanias)
+listarEmpresas.addEventListener('click', pintarEmpresas)
 listarUsuariosAZ.addEventListener('click', pintarUsuariosAZ)
